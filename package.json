@@ -1,0 +1,32 @@
+{
+  "name": "functions",
+  "description": "Cloud Functions for Firebase and Express server",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "lint": "eslint .",
+    "build": "echo 'No build step required' && exit 0"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.0.1",
+    "mongoose": "^8.8.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "eslint": "^9.15.0",
+    "firebase-functions-test": "^3.1.0",
+    "globals": "^15.12.0",
+    "nodemon": "^3.1.7"
+  },
+  "private": true
+}
