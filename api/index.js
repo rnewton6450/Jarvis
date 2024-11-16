@@ -10,10 +10,7 @@ app.use(express.json());
 // Connect to MongoDB
 const mongoURI = process.env.MONGODB_URI;
 
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(mongoURI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => {
     console.error('MongoDB connection error:', err);
@@ -55,10 +52,10 @@ app.post('/api/data', async (req, res) => {
   }
 });
 
-// GET /api/data endpoint (Retrieve all data)
+// GET /api/data endpoint (Retrieve all data, limited to 100 results)
 app.get('/api/data', async (req, res) => {
   try {
-    const data = await Data.find();
+    const data = await Data.find().limit(100); // Limit to 100 results
     res.json(data);
   } catch (err) {
     console.error('Error retrieving data:', err);
