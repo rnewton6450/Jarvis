@@ -1,4 +1,3 @@
-// index.js
 require('dotenv').config(); // Load environment variables
 const express = require('express');
 const mongoose = require('mongoose');
@@ -10,9 +9,10 @@ app.use(express.json());
 // Connect to MongoDB
 const mongoURI = process.env.MONGODB_URI;
 
-mongoose.connect(mongoURI)
+mongoose
+  .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
-  .catch(err => {
+  .catch((err) => {
     console.error('MongoDB connection error:', err);
     process.exit(1); // Exit process with failure
   });
