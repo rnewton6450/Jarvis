@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "pages": {
+    "/api/setup": {
+      "path": "api/setup.js"
+    },
+    "/api/getSetupNote": {
+      "path": "api/getSetupNote.js"
+    },
+    "/api/insertNote": {
+      "path": "api/insertNote.js"
+    },
+    "/api/addTimestamp": {
+      "path": "api/addTimestamp.js"
+    }
+  },
+  "dynamicRoutes": [],
+  "routes": [
+    {
+      "src": "/api/setup",
+      "dest": "/api/setup.js"
+    },
+    {
+      "src": "/api/getSetupNote",
+      "dest": "/api/getSetupNote.js"
+    },
+    {
+      "src": "/api/insertNote",
+      "dest": "/api/insertNote.js"
+    },
+    {
+      "src": "/api/addTimestamp",
+      "dest": "/api/addTimestamp.js"
+    }
+  ]
+}
