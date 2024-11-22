@@ -1,6 +1,9 @@
-const SetupNote = require('./models/SetupNote'); // Ensure the correct path
+import dbConnect from '../../lib/dbConnect';
+import SetupNote from '../../models/SetupNote';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
+  await dbConnect();
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -17,9 +20,13 @@ module.exports = async (req, res) => {
       { timezone, trackingCategories, setupCompleted: true, setupTimestamp: new Date() },
       { upsert: true, new: true }
     );
-    res.status(200).json({ message: 'Setup completed successfully', setupNote });
+
+    res.status(201).json({
+      message: 'Setup note updated successfully',
+      setupNote,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-};
+}

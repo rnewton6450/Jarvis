@@ -1,12 +1,14 @@
-const Timestamp = require('../models/Timestamp');
+import dbConnect from '../../../lib/dbConnect';
+import Timestamp from '../../../models/Timestamp';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
+  await dbConnect(); // Connect to the database
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const gptResponse = req.body.gptResponse;
-  const userId = req.body.userId || 'default-user'; // Use default if userId is not provided
+  const { userId, gptResponse } = req.body;
 
   if (!gptResponse) {
     return res.status(400).json({ error: 'Missing required field: gptResponse' });
@@ -21,7 +23,7 @@ module.exports = async (req, res) => {
       timestamp,
     });
   } catch (error) {
-    console.error('Error saving timestamp:', error);
+    console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-};
+}
