@@ -1,27 +1,22 @@
-import dbConnect from '../../../lib/dbConnect';
-import Note from '../../../models/Note';
+import connectToDatabase from '../../utils/mongo';
+import Note from '../../models/Note';
 
 export default async function handler(req, res) {
-  await dbConnect(); // Connect to the database
-
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { userId, title, content } = req.body;
+  const { userId, note } = req.body;
 
-  if (!userId || !title || !content) {
-    return res.status(400).json({ error: 'Missing required fields: userId, title, or content' });
+  if (!userId || !note) {
+    return res.status(400).json({ error: 'Missing required fields' });
   }
 
   try {
-    const note = new Note({ userId, title, content });
-    await note.save();
-
-    res.status(201).json({
-      message: 'Note created successfully',
-      note,
-    });
+    await connectToDatabase();
+    const newNote = new Note({ userId, note });
+    await newNote.save();
+    res.status(201).json({ message: 'Note inserted successfully', newNote });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

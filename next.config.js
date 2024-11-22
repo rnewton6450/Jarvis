@@ -1,5 +1,15 @@
-module.exports = {
-  env: {
-    MONGODB_URI: process.env.MONGODB_URI,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      };
+    }
+    return config;
   },
 };
+
+module.exports = nextConfig;
