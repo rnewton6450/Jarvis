@@ -1,4 +1,4 @@
-const SetupNote = require('../models/SetupNote');
+const SetupNote = require('./models/SetupNote'); // Ensure the correct path
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -6,6 +6,7 @@ module.exports = async (req, res) => {
   }
 
   const { userId, timezone, trackingCategories } = req.body;
+
   if (!userId || !timezone || !trackingCategories) {
     return res.status(400).json({ error: 'Missing required fields' });
   }

@@ -1,15 +1,17 @@
 {
   "version": 2,
-  "functions": {
-    "api/index.js": {
-      "maxDuration": 30,
-      "memory": 1024
-    }
-  },
-  "routes": [
+  "framework": "express",
+  "builds": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/index.js"
+      "src": "api/index.js",
+      "use": "@vercel/node"
     }
+  ],
+  "routes": [
+    { "src": "/api/setup", "dest": "/api/setup.js" },
+    { "src": "/api/getSetupNote", "dest": "/api/getSetupNote.js" },
+    { "src": "/api/insertNote", "dest": "/api/insertNote.js" },
+    { "src": "/api/addTimestamp", "dest": "/api/addTimestamp.js" },
+    { "src": "/", "dest": "/api/index.js" }
   ]
 }
