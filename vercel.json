@@ -1,10 +1,10 @@
 {
   "version": 2,
   "framework": "nextjs",
-  "routes": [
-    { "src": "/api/setup", "dest": "/pages/api/setup.js" },
-    { "src": "/api/getSetupNote", "dest": "/pages/api/getSetupNote.js" },
-    { "src": "/api/insertNote", "dest": "/pages/api/insertNote.js" },
-    { "src": "/api/addTimestamp", "dest": "/pages/api/addTimestamp.js" }
+  "rewrites": [
+    { "source": "/api/setup", "destination": "/api/setup.js" },
+    { "source": "/api/getSetupNote", "destination": "/api/getSetupNote.js" },
+    { "source": "/api/insertNote", "destination": "/api/insertNote.js" },
+    { "source": "/api/addTimestamp", "destination": "/api/addTimestamp.js" }
   ]
 }
