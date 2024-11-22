@@ -1,17 +1,23 @@
 {
   "name": "jarvis-f6675",
   "version": "1.0.0",
-  "description": "Custom GPT application using Next.js and MongoDB",
+  "description": "Custom GPT application with MongoDB and Next.js, deployed on Vercel.",
+  "main": "index.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
+    "express": "^4.18.2",
     "mongoose": "^7.0.1",
-    "next": "^15.0.3",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
-  }
+    "next": "^13.5.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "keywords": [],
+  "author": "Robert Newton",
+  "license": "ISC"
 }

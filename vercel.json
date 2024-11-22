@@ -1,16 +1,10 @@
 {
   "version": 2,
   "framework": "nextjs",
-  "builds": [
-    {
-      "src": "pages/api/*.js",
-      "use": "@vercel/node"
-    }
-  ],
   "routes": [
-    { "src": "/api/setup", "dest": "/api/setup" },
-    { "src": "/api/getSetupNote", "dest": "/api/getSetupNote" },
-    { "src": "/api/insertNote", "dest": "/api/insertNote" },
-    { "src": "/api/addTimestamp", "dest": "/api/addTimestamp" }
+    { "src": "/api/setup", "dest": "/pages/api/setup.js" },
+    { "src": "/api/getSetupNote", "dest": "/pages/api/getSetupNote.js" },
+    { "src": "/api/insertNote", "dest": "/pages/api/insertNote.js" },
+    { "src": "/api/addTimestamp", "dest": "/pages/api/addTimestamp.js" }
   ]
 }

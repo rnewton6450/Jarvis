@@ -1,20 +1,20 @@
-import dbConnect from '../../../lib/dbConnect';
 import Timestamp from '../../../models/Timestamp';
+import dbConnect from '../../../utils/dbConnect';
 
 export default async function handler(req, res) {
-  await dbConnect(); // Connect to the database
-
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   const { userId, gptResponse } = req.body;
 
-  if (!gptResponse) {
-    return res.status(400).json({ error: 'Missing required field: gptResponse' });
+  if (!userId || !gptResponse) {
+    return res.status(400).json({ error: 'Missing required fields' });
   }
 
   try {
+    await dbConnect(); // Connect to MongoDB
+
     const timestamp = new Timestamp({ userId, gptResponse });
     await timestamp.save();
 
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
       timestamp,
     });
   } catch (error) {
-    console.error(error);
+    console.error('Error saving timestamp:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
